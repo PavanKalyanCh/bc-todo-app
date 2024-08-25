@@ -22,8 +22,8 @@ module.exports = {
   },
   compilers: {
     solc: {
-      version: "0.8.0", // Specify the compiler version that matches your contracts
-      settings: {       // Enable the optimizer
+      version: "0.8.4", // A specific version that is stable
+      settings: {       // Settings to ensure compatibility and optimization
         optimizer: {
           enabled: true,
           runs: 200
