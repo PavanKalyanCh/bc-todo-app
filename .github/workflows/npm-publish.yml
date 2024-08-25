@@ -27,6 +27,9 @@ jobs:
     - name: Install Dependencies
       run: npm install
 
+    - name: Install Truffle HDWallet Provider
+      run: npm install @truffle/hdwallet-provider
+
     - name: Update Truffle and Dependencies
       run: |
         npm install -g truffle
@@ -68,9 +71,12 @@ jobs:
     - name: Install Dependencies
       run: npm install
 
+    - name: Install Truffle HDWallet Provider
+      run: npm install @truffle/hdwallet-provider
+
     - name: Deploy Contracts
       env:
-       ALCHEMY_API_URL: ${{ secrets.ALCHEMY_API_URL }}
-       DEPLOYER_PRIVATE_KEY: ${{ secrets.DEPLOYER_PRIVATE_KEY }}
+        ALCHEMY_API_URL: ${{ secrets.ALCHEMY_API_URL }}
+        DEPLOYER_PRIVATE_KEY: ${{ secrets.DEPLOYER_PRIVATE_KEY }}
       run: |
         npx truffle migrate --network ropsten
