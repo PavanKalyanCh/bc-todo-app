@@ -28,11 +28,9 @@ jobs:
       run: |
         rm -rf node_modules
         npm install
+        npm install @truffle/hdwallet-provider dotenv
 
-    - name: Install Truffle HDWallet Provider and Dotenv
-      run: npm install @truffle/hdwallet-provider dotenv
-
-    - name: Update Truffle and Install Solidity Compiler
+    - name: Install Truffle and Solidity Compiler
       run: |
         npm install -g truffle
         npm install solc@0.8.4
