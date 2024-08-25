@@ -21,8 +21,19 @@ jobs:
       with:
         node-version: '16'
 
+    - name: Clean npm Cache
+      run: npm cache clean --force
+
     - name: Install Dependencies
       run: npm install
+
+    - name: Update Truffle and Dependencies
+      run: |
+        npm install -g truffle
+        npm update
+
+    - name: Clean Build Directory
+      run: rm -rf build
 
     - name: Start Ganache
       run: npx ganache-cli --deterministic --networkId 5777 --port 8545 &
@@ -40,3 +51,26 @@ jobs:
 
     - name: Run Tests
       run: npx truffle test
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v3
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '16'
+
+    - name: Install Dependencies
+      run: npm install
+
+    # - name: Deploy Contracts
+    #   env:
+    #     INFURA_PROJECT_ID: ${{ secrets.INFURA_PROJECT_ID }}
+    #     DEPLOYER_PRIVATE_KEY: ${{ secrets.DEPLOYER_PRIVATE_KEY }}
+    #   run: |
+    #     npx truffle migrate --network ropsten
