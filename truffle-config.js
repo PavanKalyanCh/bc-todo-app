@@ -6,11 +6,11 @@ module.exports = {
     development: {
       host: "127.0.0.1",
       port: 8545,
-      network_id: "5777" // Match Ganache's network id
+      network_id: "*" // Match any network id
     },
     ropsten: {
       provider: () => new HDWalletProvider(
-        process.env.DEPLOYER_PRIVATE_KEY, 
+        process.env.DEPLOYER_PRIVATE_KEY,
         process.env.ALCHEMY_API_URL
       ),
       network_id: 3, // Ropsten's id
@@ -22,10 +22,12 @@ module.exports = {
   },
   compilers: {
     solc: {
-      version: "0.8.0", // Adjust as needed to match your contracts
-      optimizer: {
-        enabled: true,
-        runs: 200
+      version: "0.8.0", // Specify the compiler version that matches your contracts
+      settings: {       // Enable the optimizer
+        optimizer: {
+          enabled: true,
+          runs: 200
+        }
       }
     }
   }
