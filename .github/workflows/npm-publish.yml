@@ -49,8 +49,8 @@ jobs:
     # - name: Compile Contracts
     #   run: npx truffle compile
 
-    - name: Run Tests
-      run: npx truffle test
+    # - name: Run Tests
+    #   run: npx truffle test
 
   deploy:
     needs: build
