@@ -22,8 +22,8 @@ module.exports = {
   },
   compilers: {
     solc: {
-      version: "0.8.4", // A specific version that is stable
-      settings: {       // Settings to ensure compatibility and optimization
+      version: "0.8.4", // Use a specific stable version of Solidity
+      settings: {
         optimizer: {
           enabled: true,
           runs: 200
