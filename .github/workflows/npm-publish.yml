@@ -68,9 +68,9 @@ jobs:
     - name: Install Dependencies
       run: npm install
 
-    # - name: Deploy Contracts
-    #   env:
-    #     INFURA_PROJECT_ID: ${{ secrets.INFURA_PROJECT_ID }}
-    #     DEPLOYER_PRIVATE_KEY: ${{ secrets.DEPLOYER_PRIVATE_KEY }}
-    #   run: |
-    #     npx truffle migrate --network ropsten
+    - name: Deploy Contracts
+      env:
+       ALCHEMY_API_URL: ${{ secrets.ALCHEMY_API_URL }}
+       DEPLOYER_PRIVATE_KEY: ${{ secrets.DEPLOYER_PRIVATE_KEY }}
+      run: |
+        npx truffle migrate --network ropsten
