@@ -25,34 +25,18 @@ jobs:
       run: npm install
 
     - name: Start Ganache
-      run: npx ganache-cli --deterministic &
-      # Ganache is started in the background
+      run: npx ganache-cli --deterministic --networkId 5777 --port 8545 &
+      # Run Ganache on default port 8545 with a deterministic account setup
+      # The networkId and port should match your truffle-config.js settings
+
+    - name: Verify Ganache is Running
+      run: |
+        sleep 5
+        curl -X POST --data '{"jsonrpc":"2.0","method":"eth_blockNumber","params":[],"id":83}' http://localhost:8545
+      # This will check if Ganache is responding after a brief wait
 
     - name: Compile Contracts
       run: npx truffle compile
 
     - name: Run Tests
       run: npx truffle test
-
-  deploy:
-    needs: build
-    runs-on: ubuntu-latest
-
-    steps:
-    - name: Checkout Repository
-      uses: actions/checkout@v3
-
-    - name: Set up Node.js
-      uses: actions/setup-node@v3
-      with:
-        node-version: '16'
-
-    - name: Install Dependencies
-      run: npm install
-
-    # - name: Deploy Contracts
-    #   env:
-    #     INFURA_PROJECT_ID: ${{ secrets.INFURA_PROJECT_ID }}
-    #     DEPLOYER_PRIVATE_KEY: ${{ secrets.DEPLOYER_PRIVATE_KEY }}
-    #   run: |
-    #     npx truffle migrate --network ropsten
