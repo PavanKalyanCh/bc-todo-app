@@ -1,4 +1,4 @@
-name: CICD pipeline
+name: Deploy to Testnet
 
 on:
   push:
@@ -24,6 +24,10 @@ jobs:
     - name: Install Dependencies
       run: npm install
 
+    - name: Start Ganache
+      run: npx ganache-cli --deterministic &
+      # Ganache is started in the background
+
     - name: Compile Contracts
       run: npx truffle compile
 
@@ -48,7 +52,7 @@ jobs:
 
     # - name: Deploy Contracts
     #   env:
-    #     ALCHEMY_PROJECT_ID: ${{ secrets.ALCHEMY_PROJECT_ID }}
+    #     INFURA_PROJECT_ID: ${{ secrets.INFURA_PROJECT_ID }}
     #     DEPLOYER_PRIVATE_KEY: ${{ secrets.DEPLOYER_PRIVATE_KEY }}
     #   run: |
     #     npx truffle migrate --network ropsten
