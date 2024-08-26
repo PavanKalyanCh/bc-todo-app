@@ -33,6 +33,7 @@ jobs:
     - name: Install Truffle and Solidity Compiler
       run: |
         npm install -g truffle
+        npm install truffle@latest
         npm install solc@0.8.4
 
     - name: Clean Build Directory
@@ -49,8 +50,8 @@ jobs:
         curl -X POST --data '{"jsonrpc":"2.0","method":"eth_blockNumber","params":[],"id":83}' http://localhost:8545
       # This will check if Ganache is responding after a brief wait
 
-    # - name: Compile Contracts
-    #   run: npx truffle compile
+    - name: Compile Contracts
+      run: npx truffle compile
 
     - name: Run Tests
       run: npx truffle test
