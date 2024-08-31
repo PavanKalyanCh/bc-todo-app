@@ -4,7 +4,7 @@ require('dotenv').config();
 module.exports = {
   networks: {
     development: {
-      host: "127.0.0.1",  // Corrected: separate host
+      host: "localhost",  // Corrected: separate host
       port: 7545,         // Corrected: use the correct port for Ganache
       network_id: "*"     // Match any network id
     },
