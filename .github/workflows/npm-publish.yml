@@ -80,4 +80,4 @@ jobs:
         ALCHEMY_API_URL: ${{ secrets.ALCHEMY_API_URL }}
         DEPLOYER_PRIVATE_KEY: ${{ secrets.DEPLOYER_PRIVATE_KEY }}
       run: |
-        npx truffle migrate --network ropsten
+        npx truffle migrate
