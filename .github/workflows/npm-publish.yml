@@ -56,28 +56,28 @@ jobs:
     - name: Run Tests
       run: npx truffle test
 
-  # deploy:
-  #   needs: build
-  #   runs-on: ubuntu-latest
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
 
-  #   steps:
-  #   - name: Checkout Repository
-  #     uses: actions/checkout@v3
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v3
 
-  #   - name: Set up Node.js
-  #     uses: actions/setup-node@v3
-  #     with:
-  #       node-version: '16'
+    - name: Set up Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '16'
 
-  #   - name: Install Dependencies
-  #     run: npm install
+    - name: Install Dependencies
+      run: npm install
 
-  #   - name: Install Truffle HDWallet Provider and Dotenv
-  #     run: npm install @truffle/hdwallet-provider dotenv
+    - name: Install Truffle HDWallet Provider and Dotenv
+      run: npm install @truffle/hdwallet-provider dotenv
 
-  #   - name: Deploy Contracts
-  #     env:
-  #       ALCHEMY_API_URL: ${{ secrets.ALCHEMY_API_URL }}
-  #       DEPLOYER_PRIVATE_KEY: ${{ secrets.DEPLOYER_PRIVATE_KEY }}
-  #     run: |
-  #       npx truffle migrate
+    - name: Deploy Contracts
+      env:
+        ALCHEMY_API_URL: ${{ secrets.ALCHEMY_API_URL }}
+        DEPLOYER_PRIVATE_KEY: ${{ secrets.DEPLOYER_PRIVATE_KEY }}
+      run: |
+        npx truffle migrate
