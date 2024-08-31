@@ -5,7 +5,7 @@ module.exports = {
   networks: {
     development: {
       host: "localhost",  // Corrected: separate host
-      port: 7545,         // Corrected: use the correct port for Ganache
+      port: 8545,         // Corrected: use the correct port for Ganache
       network_id: "*"     // Match any network id
     },
     ropsten: {
