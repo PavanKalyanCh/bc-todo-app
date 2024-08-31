@@ -29,13 +29,11 @@ jobs:
         rm -rf node_modules
         npm install
         npm install @truffle/hdwallet-provider dotenv
-
     - name: Install Truffle and Solidity Compiler
       run: |
         npm install -g truffle
         npm install truffle@latest
         npm install solc@0.8.4
-
     - name: Clean Build Directory
       run: rm -rf build
 
@@ -80,4 +78,4 @@ jobs:
         ALCHEMY_API_URL: ${{ secrets.ALCHEMY_API_URL }}
         DEPLOYER_PRIVATE_KEY: ${{ secrets.DEPLOYER_PRIVATE_KEY }}
       run: |
-        npx truffle migrate --network ropsten
+        npx truffle migrate
